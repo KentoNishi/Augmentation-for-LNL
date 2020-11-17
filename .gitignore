@@ -1,0 +1,10 @@
+**/data
+**/__pycache__
+**/all
+.vscode
+*.pkl
+**/old
+*.zip
+*.tar
+other_methods
+*_checkpoints

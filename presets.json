@@ -1,0 +1,915 @@
+{
+    "T": 0.5,
+    "alpha": 4,
+    "average_loss": 0,
+    "batch_size": 128,
+    "checkpoint_path": "./checkpoints",
+    "learning_rate": 0.02,
+    "noise_mode": "sym",
+    "num_workers": 3,
+    "p_threshold": 0.5,
+    "preaugment": false,
+    "save_every": 25,
+    "seed": 0,
+    "warmup_aug_probability": 1,
+    "warmup_batch_size": 128,
+    "machines": {
+        "localPC": {
+            "checkpoint_path": "./localPC_checkpoints"
+        }
+    },
+    "configs": {
+        "c10": {
+            "dataset": "cifar10",
+            "num_class": 10,
+            "warm_up": 10,
+            "data_path": "../cifar10/data/cifar-10-batches-py",
+            "machines": {
+                "localPC": {
+                    "data_path": "/path/to/your/dataset"
+                },
+                "wilson": {
+                    "data_path": "/media/scratch/yding/lgfs/lnl/cifar10/data/cifar-10-batches-py"
+                },
+                "yi": {
+                    "data_path": "/media/work/lgfs/lnl/cifar10/data/cifar-10-batches-py"
+                }
+            },
+            "warmup_transform": "transform_weak_10",
+            "configs": {
+                "50sym": {
+                    "r": 0.5,
+                    "p_threshold": 0.5,
+                    "lambda_u": 25,
+                    "average_loss": 0,
+                    "configs": {
+                        "2xstrong+2xweak": {
+                            "num_epochs": 300,
+                            "lr_switch_epoch": 150,
+                            "labeled_transforms": [
+                                "transform_strong_10",
+                                "transform_strong_10",
+                                "transform_weak_10",
+                                "transform_weak_10"
+                            ],
+                            "unlabeled_transforms": [
+                                "transform_strong_10",
+                                "transform_strong_10",
+                                "transform_weak_10",
+                                "transform_weak_10"
+                            ],
+                            "configs": {
+                                "strong_warmup": {
+                                    "num_epochs": 300,
+                                    "lr_switch_epoch": 200,
+                                    "warmup_transform": "transform_strong_10"
+                                }
+                            }
+                        }
+                    }
+                },
+                "80sym": {
+                    "r": 0.8,
+                    "p_threshold": 0.5,
+                    "lambda_u": 25,
+                    "average_loss": 0,
+                    "configs": {
+                        "2xstrong+2xweak": {
+                            "num_epochs": 350,
+                            "lr_switch_epoch": 200,
+                            "labeled_transforms": [
+                                "transform_strong_10",
+                                "transform_strong_10",
+                                "transform_weak_10",
+                                "transform_weak_10"
+                            ],
+                            "unlabeled_transforms": [
+                                "transform_strong_10",
+                                "transform_strong_10",
+                                "transform_weak_10",
+                                "transform_weak_10"
+                            ],
+                            "configs": {
+                                "strong_warmup": {
+                                    "warmup_transform": "transform_strong_10"
+                                }
+                            }
+                        }
+                    }
+                },
+                "20sym": {
+                    "r": 0.2,
+                    "p_threshold": 0.5,
+                    "lambda_u": 0,
+                    "average_loss": 0,
+                    "num_epochs": 300,
+                    "lr_switch_epoch": 150,
+                    "configs": {
+                        "2xpreaugment": {
+                            "num_epochs": 200,
+                            "lr_switch_epoch": 100,
+                            "warmup_transform": "transform_none_10",
+                            "labeled_transforms": [
+                                "transform_none_10",
+                                "transform_none_10"
+                            ],
+                            "unlabeled_transforms": [
+                                "transform_none_10",
+                                "transform_none_10"
+                            ],
+                            "configs": {
+                                "strong": {
+                                    "preaugment": {
+                                        "transform": "transform_strong_10",
+                                        "ratio": 2
+                                    }
+                                },
+                                "weak": {
+                                    "preaugment": {
+                                        "transform": "transform_weak_10",
+                                        "ratio": 2
+                                    }
+                                }
+                            }
+                        },
+                        "2xstrong+2xweak": {
+                            "labeled_transforms": [
+                                "transform_strong_10",
+                                "transform_strong_10",
+                                "transform_weak_10",
+                                "transform_weak_10"
+                            ],
+                            "unlabeled_transforms": [
+                                "transform_strong_10",
+                                "transform_strong_10",
+                                "transform_weak_10",
+                                "transform_weak_10"
+                            ],
+                            "configs": {
+                                "strong_warmup": {
+                                    "warmup_transform": "transform_strong_10"
+                                },
+                                "randaugment": {
+                                    "labeled_transforms": [
+                                        "transform_strong_randaugment_10",
+                                        "transform_strong_randaugment_10",
+                                        "transform_weak_10",
+                                        "transform_weak_10"
+                                    ],
+                                    "unlabeled_transforms": [
+                                        "transform_strong_randaugment_10",
+                                        "transform_strong_randaugment_10",
+                                        "transform_weak_10",
+                                        "transform_weak_10"
+                                    ],
+                                    "configs": {
+                                        "n2m10": {
+                                            "randaugment_params": {
+                                                "n": 2,
+                                                "m": 10
+                                            }
+                                        },
+                                        "n3m5": {
+                                            "randaugment_params": {
+                                                "n": 3,
+                                                "m": 5
+                                            }
+                                        },
+                                        "n1m6": {
+                                            "randaugment_params": {
+                                                "n": 1,
+                                                "m": 6
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "4xstrong": {
+                            "labeled_transforms": [
+                                "transform_strong_10",
+                                "transform_strong_10",
+                                "transform_strong_10",
+                                "transform_strong_10"
+                            ],
+                            "unlabeled_transforms": [
+                                "transform_strong_10",
+                                "transform_strong_10",
+                                "transform_strong_10",
+                                "transform_strong_10"
+                            ]
+                        },
+                        "2xstrong": {
+                            "labeled_transforms": [
+                                "transform_strong_10",
+                                "transform_strong_10"
+                            ],
+                            "unlabeled_transforms": [
+                                "transform_strong_10",
+                                "transform_strong_10"
+                            ]
+                        },
+                        "4xweak": {
+                            "labeled_transforms": [
+                                "transform_weak_10",
+                                "transform_weak_10",
+                                "transform_weak_10",
+                                "transform_weak_10"
+                            ],
+                            "unlabeled_transforms": [
+                                "transform_weak_10",
+                                "transform_weak_10",
+                                "transform_weak_10",
+                                "transform_weak_10"
+                            ]
+                        },
+                        "raw": {
+                            "warmup_transform": "transform_none_10",
+                            "labeled_transforms": [
+                                "transform_none_10",
+                                "transform_none_10"
+                            ],
+                            "unlabeled_transforms": [
+                                "transform_none_10",
+                                "transform_none_10"
+                            ]
+                        }
+                    }
+                },
+                "90sym": {
+                    "r": 0.9,
+                    "p_threshold": 0.6,
+                    "lambda_u": 50,
+                    "average_loss": 5,
+                    "configs": {
+                        "2xpreaugment": {
+                            "num_epochs": 200,
+                            "lr_switch_epoch": 100,
+                            "warmup_transform": "transform_none_10",
+                            "labeled_transforms": [
+                                "transform_none_10",
+                                "transform_none_10"
+                            ],
+                            "unlabeled_transforms": [
+                                "transform_none_10",
+                                "transform_none_10"
+                            ],
+                            "configs": {
+                                "strong": {
+                                    "preaugment": {
+                                        "transform": "transform_strong_10",
+                                        "ratio": 2
+                                    }
+                                },
+                                "weak": {
+                                    "preaugment": {
+                                        "transform": "transform_weak_10",
+                                        "ratio": 2
+                                    }
+                                }
+                            }
+                        },
+                        "2xstrong+2xweak": {
+                            "num_epochs": 350,
+                            "lr_switch_epoch": 250,
+                            "labeled_transforms": [
+                                "transform_strong_10",
+                                "transform_strong_10",
+                                "transform_weak_10",
+                                "transform_weak_10"
+                            ],
+                            "unlabeled_transforms": [
+                                "transform_strong_10",
+                                "transform_strong_10",
+                                "transform_weak_10",
+                                "transform_weak_10"
+                            ],
+                            "configs": {
+                                "strong_warmup": {
+                                    "warmup_transform": "transform_strong_10",
+                                    "configs": {
+                                        "prob": {
+                                            "warmup_transform": "prob_transform_10",
+                                            "num_epochs": 100,
+                                            "configs": {
+                                                "0": {
+                                                    "warmup_aug_probability": 0
+                                                },
+                                                "25": {
+                                                    "warmup_aug_probability": 0.25,
+                                                    "configs": {
+                                                        "full": {
+                                                            "num_epochs": 350
+                                                        }
+                                                    }
+                                                },
+                                                "50": {
+                                                    "warmup_aug_probability": 0.5
+                                                },
+                                                "75": {
+                                                    "warmup_aug_probability": 0.75
+                                                },
+                                                "100": {
+                                                    "warmup_aug_probability": 1
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "randaugment": {
+                                    "labeled_transforms": [
+                                        "transform_strong_randaugment_10",
+                                        "transform_strong_randaugment_10",
+                                        "transform_weak_10",
+                                        "transform_weak_10"
+                                    ],
+                                    "unlabeled_transforms": [
+                                        "transform_strong_randaugment_10",
+                                        "transform_strong_randaugment_10",
+                                        "transform_weak_10",
+                                        "transform_weak_10"
+                                    ],
+                                    "configs": {
+                                        "n2m10": {
+                                            "randaugment_params": {
+                                                "n": 2,
+                                                "m": 10
+                                            }
+                                        },
+                                        "n3m5": {
+                                            "randaugment_params": {
+                                                "n": 3,
+                                                "m": 5
+                                            }
+                                        },
+                                        "n1m6": {
+                                            "randaugment_params": {
+                                                "n": 1,
+                                                "m": 6
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "4xstrong": {
+                            "num_epochs": 350,
+                            "lr_switch_epoch": 250,
+                            "labeled_transforms": [
+                                "transform_strong_10",
+                                "transform_strong_10",
+                                "transform_strong_10",
+                                "transform_strong_10"
+                            ],
+                            "unlabeled_transforms": [
+                                "transform_strong_10",
+                                "transform_strong_10",
+                                "transform_strong_10",
+                                "transform_strong_10"
+                            ],
+                            "configs": {
+                                "strong_warmup": {
+                                    "warmup_transform": "transform_strong_10",
+                                    "configs": {
+                                        "prob": {
+                                            "warmup_transform": "prob_transform_10",
+                                            "num_epochs": 100,
+                                            "configs": {
+                                                "25": {
+                                                    "warmup_aug_probability": 0.25,
+                                                    "configs": {
+                                                        "full": {
+                                                            "num_epochs": 350
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "2xstrong": {
+                            "num_epochs": 350,
+                            "lr_switch_epoch": 250,
+                            "labeled_transforms": [
+                                "transform_strong_10",
+                                "transform_strong_10"
+                            ],
+                            "unlabeled_transforms": [
+                                "transform_strong_10",
+                                "transform_strong_10"
+                            ]
+                        },
+                        "4xweak": {
+                            "num_epochs": 250,
+                            "lr_switch_epoch": 150,
+                            "labeled_transforms": [
+                                "transform_weak_10",
+                                "transform_weak_10",
+                                "transform_weak_10",
+                                "transform_weak_10"
+                            ],
+                            "unlabeled_transforms": [
+                                "transform_weak_10",
+                                "transform_weak_10",
+                                "transform_weak_10",
+                                "transform_weak_10"
+                            ]
+                        },
+                        "raw": {
+                            "num_epochs": 250,
+                            "lr_switch_epoch": 150,
+                            "warmup_transform": "transform_none_10",
+                            "labeled_transforms": [
+                                "transform_none_10",
+                                "transform_none_10"
+                            ],
+                            "unlabeled_transforms": [
+                                "transform_none_10",
+                                "transform_none_10"
+                            ]
+                        }
+                    }
+                },
+                "40asym": {
+                    "noise_mode": "asym",
+                    "r": 0.4,
+                    "p_threshold": 0.5,
+                    "lambda_u": 0,
+                    "configs": {
+                        "2xstrong+2xweak": {
+                            "num_epochs": 350,
+                            "lr_switch_epoch": 250,
+                            "labeled_transforms": [
+                                "transform_strong_10",
+                                "transform_strong_10",
+                                "transform_weak_10",
+                                "transform_weak_10"
+                            ],
+                            "unlabeled_transforms": [
+                                "transform_strong_10",
+                                "transform_strong_10",
+                                "transform_weak_10",
+                                "transform_weak_10"
+                            ],
+                            "configs": {
+                                "strong_warmup": {
+                                    "num_epochs": 300,
+                                    "lr_switch_epoch": 150,
+                                    "warmup_transform": "transform_strong_10"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "c100": {
+            "dataset": "cifar100",
+            "num_epochs": 400,
+            "lr_switch_epoch": 300,
+            "num_class": 100,
+            "warm_up": 30,
+            "warmup_transform": "transform_weak_100",
+            "data_path": "../cifar100/data/cifar-100-python",
+            "machines": {
+                "wilson": {
+                    "data_path": "/media/scratch/yding/lgfs/lnl/cifar100/data/cifar-100-python"
+                },
+                "yi": {
+                    "data_path": "/media/work/lgfs/lnl/cifar100/data/cifar-100-python"
+                }
+            },
+            "configs": {
+                "20sym": {
+                    "r": 0.2,
+                    "p_threshold": 0.5,
+                    "lambda_u": 25,
+                    "configs": {
+                        "2xpreaugment": {
+                            "num_epochs": 200,
+                            "lr_switch_epoch": 100,
+                            "warmup_transform": "transform_none_100",
+                            "labeled_transforms": [
+                                "transform_none_100",
+                                "transform_none_100"
+                            ],
+                            "unlabeled_transforms": [
+                                "transform_none_100",
+                                "transform_none_100"
+                            ],
+                            "configs": {
+                                "strong": {
+                                    "preaugment": {
+                                        "transform": "transform_strong_100",
+                                        "ratio": 2
+                                    }
+                                },
+                                "weak": {
+                                    "preaugment": {
+                                        "transform": "transform_weak_100",
+                                        "ratio": 2
+                                    }
+                                }
+                            }
+                        },
+                        "2xstrong+2xweak": {
+                            "labeled_transforms": [
+                                "transform_strong_100",
+                                "transform_strong_100",
+                                "transform_weak_100",
+                                "transform_weak_100"
+                            ],
+                            "unlabeled_transforms": [
+                                "transform_strong_100",
+                                "transform_strong_100",
+                                "transform_weak_100",
+                                "transform_weak_100"
+                            ],
+                            "configs": {
+                                "strong_warmup": {
+                                    "warmup_transform": "transform_strong_100"
+                                },
+                                "randaugment": {
+                                    "labeled_transforms": [
+                                        "transform_strong_randaugment_100",
+                                        "transform_strong_randaugment_100",
+                                        "transform_weak_100",
+                                        "transform_weak_100"
+                                    ],
+                                    "unlabeled_transforms": [
+                                        "transform_strong_randaugment_100",
+                                        "transform_strong_randaugment_100",
+                                        "transform_weak_100",
+                                        "transform_weak_100"
+                                    ],
+                                    "configs": {
+                                        "n2m10": {
+                                            "randaugment_params": {
+                                                "n": 2,
+                                                "m": 10
+                                            }
+                                        },
+                                        "n3m5": {
+                                            "randaugment_params": {
+                                                "n": 3,
+                                                "m": 5
+                                            }
+                                        },
+                                        "n1m6": {
+                                            "randaugment_params": {
+                                                "n": 1,
+                                                "m": 6
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "4xstrong": {
+                            "labeled_transforms": [
+                                "transform_strong_100",
+                                "transform_strong_100",
+                                "transform_strong_100",
+                                "transform_strong_100"
+                            ],
+                            "unlabeled_transforms": [
+                                "transform_strong_100",
+                                "transform_strong_100",
+                                "transform_strong_100",
+                                "transform_strong_100"
+                            ]
+                        },
+                        "2xstrong": {
+                            "labeled_transforms": [
+                                "transform_strong_100",
+                                "transform_strong_100"
+                            ],
+                            "unlabeled_transforms": [
+                                "transform_strong_100",
+                                "transform_strong_100"
+                            ]
+                        },
+                        "4xweak": {
+                            "labeled_transforms": [
+                                "transform_weak_100",
+                                "transform_weak_100",
+                                "transform_weak_100",
+                                "transform_weak_100"
+                            ],
+                            "unlabeled_transforms": [
+                                "transform_weak_100",
+                                "transform_weak_100",
+                                "transform_weak_100",
+                                "transform_weak_100"
+                            ]
+                        },
+                        "raw": {
+                            "warmup_transform": "transform_none_100",
+                            "labeled_transforms": [
+                                "transform_none_100",
+                                "transform_none_100"
+                            ],
+                            "unlabeled_transforms": [
+                                "transform_none_100",
+                                "transform_none_100"
+                            ]
+                        }
+                    }
+                },
+                "50sym": {
+                    "r": 0.5,
+                    "p_threshold": 0.5,
+                    "lambda_u": 150,
+                    "configs": {
+                        "2xstrong+2xweak": {
+                            "labeled_transforms": [
+                                "transform_strong_100",
+                                "transform_strong_100",
+                                "transform_weak_100",
+                                "transform_weak_100"
+                            ],
+                            "unlabeled_transforms": [
+                                "transform_strong_100",
+                                "transform_strong_100",
+                                "transform_weak_100",
+                                "transform_weak_100"
+                            ],
+                            "configs": {
+                                "strong_warmup": {
+                                    "warmup_transform": "transform_strong_100"
+                                }
+                            }
+                        }
+                    }
+                },
+                "80sym": {
+                    "r": 0.8,
+                    "p_threshold": 0.5,
+                    "lambda_u": 150,
+                    "configs": {
+                        "2xstrong+2xweak": {
+                            "labeled_transforms": [
+                                "transform_strong_100",
+                                "transform_strong_100",
+                                "transform_weak_100",
+                                "transform_weak_100"
+                            ],
+                            "unlabeled_transforms": [
+                                "transform_strong_100",
+                                "transform_strong_100",
+                                "transform_weak_100",
+                                "transform_weak_100"
+                            ],
+                            "configs": {
+                                "strong_warmup": {
+                                    "warmup_transform": "transform_strong_100"
+                                }
+                            }
+                        }
+                    }
+                },
+                "90sym": {
+                    "r": 0.9,
+                    "p_threshold": 0.6,
+                    "lambda_u": 150,
+                    "average_loss": 5,
+                    "configs": {
+                        "2xpreaugment": {
+                            "num_epochs": 200,
+                            "lr_switch_epoch": 100,
+                            "warmup_transform": "transform_none_100",
+                            "labeled_transforms": [
+                                "transform_none_100",
+                                "transform_none_100"
+                            ],
+                            "unlabeled_transforms": [
+                                "transform_none_100",
+                                "transform_none_100"
+                            ],
+                            "configs": {
+                                "strong": {
+                                    "preaugment": {
+                                        "transform": "transform_strong_100",
+                                        "ratio": 2
+                                    }
+                                },
+                                "weak": {
+                                    "preaugment": {
+                                        "transform": "transform_weak_100",
+                                        "ratio": 2
+                                    }
+                                }
+                            }
+                        },
+                        "2xstrong+2xweak": {
+                            "labeled_transforms": [
+                                "transform_strong_100",
+                                "transform_strong_100",
+                                "transform_weak_100",
+                                "transform_weak_100"
+                            ],
+                            "unlabeled_transforms": [
+                                "transform_strong_100",
+                                "transform_strong_100",
+                                "transform_weak_100",
+                                "transform_weak_100"
+                            ],
+                            "configs": {
+                                "strong_warmup": {
+                                    "warmup_transform": "transform_strong_100"
+                                },
+                                "randaugment": {
+                                    "labeled_transforms": [
+                                        "transform_strong_randaugment_100",
+                                        "transform_strong_randaugment_100",
+                                        "transform_weak_100",
+                                        "transform_weak_100"
+                                    ],
+                                    "unlabeled_transforms": [
+                                        "transform_strong_randaugment_100",
+                                        "transform_strong_randaugment_100",
+                                        "transform_weak_100",
+                                        "transform_weak_100"
+                                    ],
+                                    "configs": {
+                                        "n2m10": {
+                                            "randaugment_params": {
+                                                "n": 2,
+                                                "m": 10
+                                            }
+                                        },
+                                        "n3m5": {
+                                            "randaugment_params": {
+                                                "n": 3,
+                                                "m": 5
+                                            }
+                                        },
+                                        "n1m6": {
+                                            "randaugment_params": {
+                                                "n": 1,
+                                                "m": 6
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "4xstrong": {
+                            "labeled_transforms": [
+                                "transform_strong_100",
+                                "transform_strong_100",
+                                "transform_strong_100",
+                                "transform_strong_100"
+                            ],
+                            "unlabeled_transforms": [
+                                "transform_strong_100",
+                                "transform_strong_100",
+                                "transform_strong_100",
+                                "transform_strong_100"
+                            ]
+                        },
+                        "2xstrong": {
+                            "labeled_transforms": [
+                                "transform_strong_100",
+                                "transform_strong_100"
+                            ],
+                            "unlabeled_transforms": [
+                                "transform_strong_100",
+                                "transform_strong_100"
+                            ]
+                        },
+                        "4xweak": {
+                            "num_epochs": 250,
+                            "lr_switch_epoch": 150,
+                            "labeled_transforms": [
+                                "transform_weak_100",
+                                "transform_weak_100",
+                                "transform_weak_100",
+                                "transform_weak_100"
+                            ],
+                            "unlabeled_transforms": [
+                                "transform_weak_100",
+                                "transform_weak_100",
+                                "transform_weak_100",
+                                "transform_weak_100"
+                            ]
+                        },
+                        "raw": {
+                            "warmup_transform": "transform_none_100",
+                            "labeled_transforms": [
+                                "transform_none_100",
+                                "transform_none_100"
+                            ],
+                            "unlabeled_transforms": [
+                                "transform_none_100",
+                                "transform_none_100"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "c1m": {
+            "seed": 123,
+            "save_every": 1,
+            "num_workers": 5,
+            "batch_size": 32,
+            "warmup_batch_size": 64,
+            "learning_rate": 0.002,
+            "alpha": 0.5,
+            "lambda_u": 0,
+            "p_threshold": 0.5,
+            "T": 0.5,
+            "num_epochs": 80,
+            "lr_switch_epoch": 40,
+            "warm_up": 1,
+            "machines": {
+                "wilson": {
+                    "data_path": "/home/yding37/Documents/projects/datasets/clothing1m/data"
+                }
+            },
+            "num_class": 14,
+            "num_batches": 1000,
+            "warmup_transform": "transform_weak_c1m",
+            "configs": {
+                "2xstrong+2xweak": {
+                    "labeled_transforms": [
+                        "transform_strong_c1m_in",
+                        "transform_strong_c1m_in",
+                        "transform_weak_c1m",
+                        "transform_weak_c1m"
+                    ],
+                    "unlabeled_transforms": [
+                        "transform_strong_c1m_in",
+                        "transform_strong_c1m_in",
+                        "transform_weak_c1m",
+                        "transform_weak_c1m"
+                    ],
+                    "configs": {
+                        "strong_warmup": {
+                            "warmup_transform": "transform_strong_c1m_c10"
+                        }
+                    }
+                }
+            }
+        },
+        "wv": {
+            "comments": "Unused and untested!",
+            "save_every": 1,
+            "num_workers": 5,
+            "batch_size": 32,
+            "warmup_batch_size": 64,
+            "learning_rate": 0.01,
+            "alpha": 0.5,
+            "lambda_u": 0,
+            "p_threshold": 0.5,
+            "T": 0.5,
+            "num_epochs": 80,
+            "num_class": 50,
+            "machines": {
+                "wilson": {
+                    "data_path": "/home/yding37/Documents/projects/datasets/"
+                },
+                "configs": {
+                    "2xstrong+2xweak": {
+                        "labeled_transforms": [
+                            "transform_strong_wv_in",
+                            "transform_strong_wv_in",
+                            "transform_weak_wv",
+                            "transform_weak_wv"
+                        ],
+                        "unlabeled_transforms": [
+                            "transform_strong_wv_in",
+                            "transform_strong_wv_in",
+                            "transform_weak_wv",
+                            "transform_weak_wv"
+                        ],
+                        "configs": {
+                            "strong_warmup": {
+                                "warmup_transform": "transform_strong_wv_in",
+                                "configs": {
+                                    "in": {
+                                        "labeled_transforms": [
+                                            "transform_strong_wv_in",
+                                            "transform_strong_wv_in",
+                                            "transform_weak_wv",
+                                            "transform_weak_wv"
+                                        ],
+                                        "unlabeled_transforms": [
+                                            "transform_strong_wv_in",
+                                            "transform_strong_wv_in",
+                                            "transform_weak_wv",
+                                            "transform_weak_wv"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
