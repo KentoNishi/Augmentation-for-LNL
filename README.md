@@ -47,7 +47,7 @@ Code for "Augmentation Strategies for Learning with Noisy Labels".
             </tr>
             <tbody>
                 <tr>
-                    <td rowspan="2">Vanilla DivideMix (2xweak)</td>
+                    <td rowspan="2">Runtime-W (Vanilla DivideMix)</td>
                     <td>Highest</td>
                     <td><code>96.100%</code></td>
                     <td><code>94.600%</code></td>
@@ -64,7 +64,7 @@ Code for "Augmentation Strategies for Learning with Noisy Labels".
                     <td><code>92.100%</code></td>
                 </tr>
                 <tr>
-                    <td rowspan="2">raw</td>
+                    <td rowspan="2">Raw</td>
                     <td>Highest</td>
                     <td><code>85.940%</code></td>
                     <td><code></code></td>
@@ -81,7 +81,7 @@ Code for "Augmentation Strategies for Learning with Noisy Labels".
                     <td><code></code></td>
                 </tr>
                 <tr>
-                    <td rowspan="2">2xpreaugment.weak</td>
+                    <td rowspan="2">Expansion.Weak</td>
                     <td>Highest</td>
                     <td><code>90.860%</code></td>
                     <td><code></code></td>
@@ -98,7 +98,7 @@ Code for "Augmentation Strategies for Learning with Noisy Labels".
                     <td><code></code></td>
                 </tr>
                 <tr>
-                    <td rowspan="2">2xpreaugment.strong</td>
+                    <td rowspan="2">Expansion.Strong</td>
                     <td>Highest</td>
                     <td><code>90.560%</code></td>
                     <td><code></code></td>
@@ -115,7 +115,7 @@ Code for "Augmentation Strategies for Learning with Noisy Labels".
                     <td><code></code></td>
                 </tr>
                 <tr>
-                    <td rowspan="2">4xweak</td>
+                    <td rowspan="2">AugDesc-WW</td>
                     <td>Highest</td>
                     <td>96.270%</td>
                     <td><code></code></td>
@@ -132,7 +132,7 @@ Code for "Augmentation Strategies for Learning with Noisy Labels".
                     <td><code></code></td>
                 </tr>
                 <tr>
-                    <td rowspan="2">2xstrong</td>
+                    <td rowspan="2">Runtime-S</td>
                     <td>Highest</td>
                     <td><strong>96.540%</strong></td>
                     <td><code></code></td>
@@ -149,7 +149,7 @@ Code for "Augmentation Strategies for Learning with Noisy Labels".
                     <td><code></code></td>
                 </tr>
                 <tr>
-                    <td rowspan="2">4xstrong</td>
+                    <td rowspan="2">AugDesc-SS</td>
                     <td>Highest</td>
                     <td>96.470%</td>
                     <td><code></code></td>
@@ -166,7 +166,7 @@ Code for "Augmentation Strategies for Learning with Noisy Labels".
                     <td><code></code></td>
                 </tr>
                 <tr>
-                    <td rowspan="2">2xstrong+2xweak.randaugment</td>
+                    <td rowspan="2">AugDesc-WS.RandAug</td>
                     <td>Highest</td>
                     <td>96.280%</td>
                     <td><code></code></td>
@@ -183,24 +183,7 @@ Code for "Augmentation Strategies for Learning with Noisy Labels".
                     <td><code></code></td>
                 </tr>
                 <tr>
-                    <td rowspan="2">2xstrong+2xweak</td>
-                    <td>Highest</td>
-                    <td>96.330%</td>
-                    <td>95.360%</td>
-                    <td><strong>93.770%</strong></td>
-                    <td><strong>91.880%</strong></td>
-                    <td><strong>94.640%</strong></td>
-                </tr>
-                <tr>
-                    <td>Last 10</td>
-                    <td>96.168%</td>
-                    <td>95.134%</td>
-                    <td><strong>93.641%</strong></td>
-                    <td><strong>91.760%</strong></td>
-                    <td><strong>94.258%</strong></td>
-                </tr>
-                <tr>
-                    <td rowspan="2">2xstrong+2xweak.strong_warmup</td>
+                    <td rowspan="2">AugDesc-WS.SAW</td>
                     <td>Highest</td>
                     <td>96.350%</td>
                     <td><strong>95.640%</strong></td>
@@ -215,6 +198,23 @@ Code for "Augmentation Strategies for Learning with Noisy Labels".
                     <td>93.563%</td>
                     <td><code>10.000%</code></td>
                     <td>94.078%</td>
+                </tr>
+                <tr>
+                    <td rowspan="2"><strong>AugDesc-WS</strong> (WAW)</td>
+                    <td>Highest</td>
+                    <td>96.330%</td>
+                    <td>95.360%</td>
+                    <td><strong>93.770%</strong></td>
+                    <td><strong>91.880%</strong></td>
+                    <td><strong>94.640%</strong></td>
+                </tr>
+                <tr>
+                    <td>Last 10</td>
+                    <td>96.168%</td>
+                    <td>95.134%</td>
+                    <td><strong>93.641%</strong></td>
+                    <td><strong>91.760%</strong></td>
+                    <td><strong>94.258%</strong></td>
                 </tr>
             </tbody>
         </thead>
@@ -237,7 +237,7 @@ Code for "Augmentation Strategies for Learning with Noisy Labels".
             </tr>
             <tbody>
                 <tr>
-                    <td rowspan="2">Vanilla DivideMix (2xweak)</td>
+                    <td rowspan="2">Runtime-W (Vanilla DivideMix)</td>
                     <td>Highest</td>
                     <td><code>77.300%</code></td>
                     <td><code>74.600%</code></td>
@@ -252,7 +252,7 @@ Code for "Augmentation Strategies for Learning with Noisy Labels".
                     <td><code>31.000%</code></td>
                 </tr>
                 <tr>
-                    <td rowspan="2">raw</td>
+                    <td rowspan="2">Raw</td>
                     <td>Highest</td>
                     <td><code>52.240%</code></td>
                     <td><code></code></td>
@@ -267,7 +267,7 @@ Code for "Augmentation Strategies for Learning with Noisy Labels".
                     <td><code>2.979%</code></td>
                 </tr>
                 <tr>
-                    <td rowspan="2">2xpreaugment.weak</td>
+                    <td rowspan="2">Expansion.Weak</td>
                     <td>Highest</td>
                     <td><code>57.110%</code></td>
                     <td><code></code></td>
@@ -282,7 +282,7 @@ Code for "Augmentation Strategies for Learning with Noisy Labels".
                     <td><code>2.223%</code></td>
                 </tr>
                 <tr>
-                    <td rowspan="2">2xpreaugment.strong</td>
+                    <td rowspan="2">Expansion.Strong</td>
                     <td>Highest</td>
                     <td><code>55.150%</code></td>
                     <td><code></code></td>
@@ -297,7 +297,7 @@ Code for "Augmentation Strategies for Learning with Noisy Labels".
                     <td><code>3.242%</code></td>
                 </tr>
                 <tr>
-                    <td rowspan="2">4xweak</td>
+                    <td rowspan="2">AugDesc-WW</td>
                     <td>Highest</td>
                     <td>78.900%</td>
                     <td><code></code></td>
@@ -312,7 +312,7 @@ Code for "Augmentation Strategies for Learning with Noisy Labels".
                     <td><code>29.876%</code></td>
                 </tr>
                 <tr>
-                    <td rowspan="2">2xstrong</td>
+                    <td rowspan="2">Runtime-S</td>
                     <td>Highest</td>
                     <td><strong>79.890%</strong></td>
                     <td><code></code></td>
@@ -327,7 +327,7 @@ Code for "Augmentation Strategies for Learning with Noisy Labels".
                     <td>40.343%</td>
                 </tr>
                 <tr>
-                    <td rowspan="2">4xstrong</td>
+                    <td rowspan="2">AugDesc-SS</td>
                     <td>Highest</td>
                     <td>79.790%</td>
                     <td><code></code></td>
@@ -342,7 +342,7 @@ Code for "Augmentation Strategies for Learning with Noisy Labels".
                     <td>38.553%</td>
                 </tr>
                 <tr>
-                    <td rowspan="2">2xstrong+2xweak.randaugment</td>
+                    <td rowspan="2">AugDesc-WS.RandAug</td>
                     <td>Highest</td>
                     <td>78.060%</td>
                     <td><code></code></td>
@@ -357,22 +357,7 @@ Code for "Augmentation Strategies for Learning with Noisy Labels".
                     <td>36.672%</td>
                 </tr>
                 <tr>
-                    <td rowspan="2">2xstrong+2xweak</td>
-                    <td>Highest</td>
-                    <td>79.500%</td>
-                    <td>77.240%</td>
-                    <td><strong>66.360%</strong></td>
-                    <td><strong>41.200%</strong></td>
-                </tr>
-                <tr>
-                    <td>Last 10</td>
-                    <td>79.216%</td>
-                    <td>77.010%</td>
-                    <td><strong>66.046%</strong></td>
-                    <td><strong>40.895%</strong></td>
-                </tr>
-                <tr>
-                    <td rowspan="2">2xstrong+2xweak.strong_warmup</td>
+                    <td rowspan="2">AugDesc-WS.SAW</td>
                     <td>Highest</td>
                     <td>79.610%</td>
                     <td><strong>77.640%</strong></td>
@@ -386,6 +371,21 @@ Code for "Augmentation Strategies for Learning with Noisy Labels".
                     <td>61.632%</td>
                     <td>15.050%</td>
                 </tr>
+                <tr>
+                    <td rowspan="2"><strong>AugDesc-WS</strong> (WAW)</td>
+                    <td>Highest</td>
+                    <td>79.500%</td>
+                    <td>77.240%</td>
+                    <td><strong>66.360%</strong></td>
+                    <td><strong>41.200%</strong></td>
+                </tr>
+                <tr>
+                    <td>Last 10</td>
+                    <td>79.216%</td>
+                    <td>77.010%</td>
+                    <td><strong>66.046%</strong></td>
+                    <td><strong>40.895%</strong></td>
+                </tr>
             </tbody>
         </thead>
     </table>
@@ -398,15 +398,15 @@ Code for "Augmentation Strategies for Learning with Noisy Labels".
             </tr>
             <tbody>
                 <tr>
-                    <td>Vanilla DivideMix (2xweak)</td>
+                    <td>Runtime-W (Vanilla DivideMix)</td>
                     <td><code>74.760%</code></td>
                 </tr>
                 <tr>
-                    <td>2xstrong+2xweak</td>
+                    <td><strong>AugDesc-WS</strong> (WAW)</td>
                     <td><code>74.720%</code></td>
                 </tr>
                 <tr>
-                    <td>2xstrong+2xweak.strong_warmup</td>
+                    <td>AugDesc-WS.SAW</td>
                     <td><strong>75.109%</strong></td>
                 </tr>
             </tbody>
@@ -594,9 +594,9 @@ To train locally, first add your local machine to the `presets.json`:
 }
 ```
 
-A "preset" is a specific configuration branch. For example, if you would like to train the `global -> c10 -> 90sym -> 2xstrong+2xweak` preset specified in `presets.json` on your machine named `localPC`, you can run the following command:
+A "preset" is a specific configuration branch. For example, if you would like to train the `global -> c10 -> 90sym -> AugDesc-WS` preset specified in `presets.json` on your machine named `localPC`, you can run the following command:
 ```bash
-python train_cifar.py --preset c10.90sym.2xstrong+2xweak --machine localPC
+python train_cifar.py --preset c10.90sym.AugDesc-WS --machine localPC
 ```
 The training script will create the appropriate directory in your specified `checkpoint_path` to save its progress.
 

@@ -43,7 +43,7 @@
                     "lambda_u": 25,
                     "average_loss": 0,
                     "configs": {
-                        "2xstrong+2xweak": {
+                        "AugDesc-WS": {
                             "num_epochs": 300,
                             "lr_switch_epoch": 150,
                             "labeled_transforms": [
@@ -59,7 +59,7 @@
                                 "transform_weak_10"
                             ],
                             "configs": {
-                                "strong_warmup": {
+                                "SAW": {
                                     "num_epochs": 300,
                                     "lr_switch_epoch": 200,
                                     "warmup_transform": "transform_strong_10"
@@ -74,7 +74,7 @@
                     "lambda_u": 25,
                     "average_loss": 0,
                     "configs": {
-                        "2xstrong+2xweak": {
+                        "AugDesc-WS": {
                             "num_epochs": 350,
                             "lr_switch_epoch": 200,
                             "labeled_transforms": [
@@ -90,7 +90,7 @@
                                 "transform_weak_10"
                             ],
                             "configs": {
-                                "strong_warmup": {
+                                "SAW": {
                                     "warmup_transform": "transform_strong_10"
                                 }
                             }
@@ -105,7 +105,7 @@
                     "num_epochs": 300,
                     "lr_switch_epoch": 150,
                     "configs": {
-                        "2xpreaugment": {
+                        "Expansion": {
                             "num_epochs": 200,
                             "lr_switch_epoch": 100,
                             "warmup_transform": "transform_none_10",
@@ -118,13 +118,13 @@
                                 "transform_none_10"
                             ],
                             "configs": {
-                                "strong": {
+                                "Strong": {
                                     "preaugment": {
                                         "transform": "transform_strong_10",
                                         "ratio": 2
                                     }
                                 },
-                                "weak": {
+                                "Weak": {
                                     "preaugment": {
                                         "transform": "transform_weak_10",
                                         "ratio": 2
@@ -132,7 +132,7 @@
                                 }
                             }
                         },
-                        "2xstrong+2xweak": {
+                        "AugDesc-WS": {
                             "labeled_transforms": [
                                 "transform_strong_10",
                                 "transform_strong_10",
@@ -146,10 +146,10 @@
                                 "transform_weak_10"
                             ],
                             "configs": {
-                                "strong_warmup": {
+                                "SAW": {
                                     "warmup_transform": "transform_strong_10"
                                 },
-                                "randaugment": {
+                                "RandAug": {
                                     "labeled_transforms": [
                                         "transform_strong_randaugment_10",
                                         "transform_strong_randaugment_10",
@@ -185,7 +185,7 @@
                                 }
                             }
                         },
-                        "4xstrong": {
+                        "AugDesc-SS": {
                             "labeled_transforms": [
                                 "transform_strong_10",
                                 "transform_strong_10",
@@ -199,7 +199,7 @@
                                 "transform_strong_10"
                             ]
                         },
-                        "2xstrong": {
+                        "Runtime-S": {
                             "labeled_transforms": [
                                 "transform_strong_10",
                                 "transform_strong_10"
@@ -209,7 +209,7 @@
                                 "transform_strong_10"
                             ]
                         },
-                        "4xweak": {
+                        "AugDesc-WW": {
                             "labeled_transforms": [
                                 "transform_weak_10",
                                 "transform_weak_10",
@@ -223,7 +223,7 @@
                                 "transform_weak_10"
                             ]
                         },
-                        "raw": {
+                        "Raw": {
                             "warmup_transform": "transform_none_10",
                             "labeled_transforms": [
                                 "transform_none_10",
@@ -242,7 +242,7 @@
                     "lambda_u": 50,
                     "average_loss": 5,
                     "configs": {
-                        "2xpreaugment": {
+                        "Expansion": {
                             "num_epochs": 200,
                             "lr_switch_epoch": 100,
                             "warmup_transform": "transform_none_10",
@@ -255,13 +255,13 @@
                                 "transform_none_10"
                             ],
                             "configs": {
-                                "strong": {
+                                "Strong": {
                                     "preaugment": {
                                         "transform": "transform_strong_10",
                                         "ratio": 2
                                     }
                                 },
-                                "weak": {
+                                "Weak": {
                                     "preaugment": {
                                         "transform": "transform_weak_10",
                                         "ratio": 2
@@ -269,7 +269,7 @@
                                 }
                             }
                         },
-                        "2xstrong+2xweak": {
+                        "AugDesc-WS": {
                             "num_epochs": 350,
                             "lr_switch_epoch": 250,
                             "labeled_transforms": [
@@ -285,7 +285,7 @@
                                 "transform_weak_10"
                             ],
                             "configs": {
-                                "strong_warmup": {
+                                "SAW": {
                                     "warmup_transform": "transform_strong_10",
                                     "configs": {
                                         "prob": {
@@ -316,7 +316,7 @@
                                         }
                                     }
                                 },
-                                "randaugment": {
+                                "RandAug": {
                                     "labeled_transforms": [
                                         "transform_strong_randaugment_10",
                                         "transform_strong_randaugment_10",
@@ -352,7 +352,7 @@
                                 }
                             }
                         },
-                        "4xstrong": {
+                        "AugDesc-SS": {
                             "num_epochs": 350,
                             "lr_switch_epoch": 250,
                             "labeled_transforms": [
@@ -368,7 +368,7 @@
                                 "transform_strong_10"
                             ],
                             "configs": {
-                                "strong_warmup": {
+                                "SAW": {
                                     "warmup_transform": "transform_strong_10",
                                     "configs": {
                                         "prob": {
@@ -389,7 +389,7 @@
                                 }
                             }
                         },
-                        "2xstrong": {
+                        "Runtime-S": {
                             "num_epochs": 350,
                             "lr_switch_epoch": 250,
                             "labeled_transforms": [
@@ -401,7 +401,7 @@
                                 "transform_strong_10"
                             ]
                         },
-                        "4xweak": {
+                        "AugDesc-WW": {
                             "num_epochs": 250,
                             "lr_switch_epoch": 150,
                             "labeled_transforms": [
@@ -417,7 +417,7 @@
                                 "transform_weak_10"
                             ]
                         },
-                        "raw": {
+                        "Raw": {
                             "num_epochs": 250,
                             "lr_switch_epoch": 150,
                             "warmup_transform": "transform_none_10",
@@ -438,7 +438,7 @@
                     "p_threshold": 0.5,
                     "lambda_u": 0,
                     "configs": {
-                        "2xstrong+2xweak": {
+                        "AugDesc-WS": {
                             "num_epochs": 350,
                             "lr_switch_epoch": 250,
                             "labeled_transforms": [
@@ -454,7 +454,7 @@
                                 "transform_weak_10"
                             ],
                             "configs": {
-                                "strong_warmup": {
+                                "SAW": {
                                     "num_epochs": 300,
                                     "lr_switch_epoch": 150,
                                     "warmup_transform": "transform_strong_10"
@@ -487,7 +487,7 @@
                     "p_threshold": 0.5,
                     "lambda_u": 25,
                     "configs": {
-                        "2xpreaugment": {
+                        "Expansion": {
                             "num_epochs": 200,
                             "lr_switch_epoch": 100,
                             "warmup_transform": "transform_none_100",
@@ -500,13 +500,13 @@
                                 "transform_none_100"
                             ],
                             "configs": {
-                                "strong": {
+                                "Strong": {
                                     "preaugment": {
                                         "transform": "transform_strong_100",
                                         "ratio": 2
                                     }
                                 },
-                                "weak": {
+                                "Weak": {
                                     "preaugment": {
                                         "transform": "transform_weak_100",
                                         "ratio": 2
@@ -514,7 +514,7 @@
                                 }
                             }
                         },
-                        "2xstrong+2xweak": {
+                        "AugDesc-WS": {
                             "labeled_transforms": [
                                 "transform_strong_100",
                                 "transform_strong_100",
@@ -528,10 +528,10 @@
                                 "transform_weak_100"
                             ],
                             "configs": {
-                                "strong_warmup": {
+                                "SAW": {
                                     "warmup_transform": "transform_strong_100"
                                 },
-                                "randaugment": {
+                                "RandAug": {
                                     "labeled_transforms": [
                                         "transform_strong_randaugment_100",
                                         "transform_strong_randaugment_100",
@@ -567,7 +567,7 @@
                                 }
                             }
                         },
-                        "4xstrong": {
+                        "AugDesc-SS": {
                             "labeled_transforms": [
                                 "transform_strong_100",
                                 "transform_strong_100",
@@ -581,7 +581,7 @@
                                 "transform_strong_100"
                             ]
                         },
-                        "2xstrong": {
+                        "Runtime-S": {
                             "labeled_transforms": [
                                 "transform_strong_100",
                                 "transform_strong_100"
@@ -591,7 +591,7 @@
                                 "transform_strong_100"
                             ]
                         },
-                        "4xweak": {
+                        "AugDesc-WW": {
                             "labeled_transforms": [
                                 "transform_weak_100",
                                 "transform_weak_100",
@@ -605,7 +605,7 @@
                                 "transform_weak_100"
                             ]
                         },
-                        "raw": {
+                        "Raw": {
                             "warmup_transform": "transform_none_100",
                             "labeled_transforms": [
                                 "transform_none_100",
@@ -623,7 +623,7 @@
                     "p_threshold": 0.5,
                     "lambda_u": 150,
                     "configs": {
-                        "2xstrong+2xweak": {
+                        "AugDesc-WS": {
                             "labeled_transforms": [
                                 "transform_strong_100",
                                 "transform_strong_100",
@@ -637,7 +637,7 @@
                                 "transform_weak_100"
                             ],
                             "configs": {
-                                "strong_warmup": {
+                                "SAW": {
                                     "warmup_transform": "transform_strong_100"
                                 }
                             }
@@ -649,7 +649,7 @@
                     "p_threshold": 0.5,
                     "lambda_u": 150,
                     "configs": {
-                        "2xstrong+2xweak": {
+                        "AugDesc-WS": {
                             "labeled_transforms": [
                                 "transform_strong_100",
                                 "transform_strong_100",
@@ -663,7 +663,7 @@
                                 "transform_weak_100"
                             ],
                             "configs": {
-                                "strong_warmup": {
+                                "SAW": {
                                     "warmup_transform": "transform_strong_100"
                                 }
                             }
@@ -676,7 +676,7 @@
                     "lambda_u": 150,
                     "average_loss": 5,
                     "configs": {
-                        "2xpreaugment": {
+                        "Expansion": {
                             "num_epochs": 200,
                             "lr_switch_epoch": 100,
                             "warmup_transform": "transform_none_100",
@@ -689,13 +689,13 @@
                                 "transform_none_100"
                             ],
                             "configs": {
-                                "strong": {
+                                "Strong": {
                                     "preaugment": {
                                         "transform": "transform_strong_100",
                                         "ratio": 2
                                     }
                                 },
-                                "weak": {
+                                "Weak": {
                                     "preaugment": {
                                         "transform": "transform_weak_100",
                                         "ratio": 2
@@ -703,7 +703,7 @@
                                 }
                             }
                         },
-                        "2xstrong+2xweak": {
+                        "AugDesc-WS": {
                             "labeled_transforms": [
                                 "transform_strong_100",
                                 "transform_strong_100",
@@ -717,10 +717,10 @@
                                 "transform_weak_100"
                             ],
                             "configs": {
-                                "strong_warmup": {
+                                "SAW": {
                                     "warmup_transform": "transform_strong_100"
                                 },
-                                "randaugment": {
+                                "RandAug": {
                                     "labeled_transforms": [
                                         "transform_strong_randaugment_100",
                                         "transform_strong_randaugment_100",
@@ -756,7 +756,7 @@
                                 }
                             }
                         },
-                        "4xstrong": {
+                        "AugDesc-SS": {
                             "labeled_transforms": [
                                 "transform_strong_100",
                                 "transform_strong_100",
@@ -770,7 +770,7 @@
                                 "transform_strong_100"
                             ]
                         },
-                        "2xstrong": {
+                        "Runtime-S": {
                             "labeled_transforms": [
                                 "transform_strong_100",
                                 "transform_strong_100"
@@ -780,7 +780,7 @@
                                 "transform_strong_100"
                             ]
                         },
-                        "4xweak": {
+                        "AugDesc-WW": {
                             "num_epochs": 250,
                             "lr_switch_epoch": 150,
                             "labeled_transforms": [
@@ -796,7 +796,7 @@
                                 "transform_weak_100"
                             ]
                         },
-                        "raw": {
+                        "Raw": {
                             "warmup_transform": "transform_none_100",
                             "labeled_transforms": [
                                 "transform_none_100",
@@ -834,7 +834,7 @@
             "num_batches": 1000,
             "warmup_transform": "transform_weak_c1m",
             "configs": {
-                "2xstrong+2xweak": {
+                "AugDesc-WS": {
                     "labeled_transforms": [
                         "transform_strong_c1m_in",
                         "transform_strong_c1m_in",
@@ -848,7 +848,7 @@
                         "transform_weak_c1m"
                     ],
                     "configs": {
-                        "strong_warmup": {
+                        "SAW": {
                             "warmup_transform": "transform_strong_c1m_c10"
                         }
                     }
@@ -873,7 +873,7 @@
                     "data_path": "/home/yding37/Documents/projects/datasets/"
                 },
                 "configs": {
-                    "2xstrong+2xweak": {
+                    "AugDesc-WS": {
                         "labeled_transforms": [
                             "transform_strong_wv_in",
                             "transform_strong_wv_in",
@@ -887,7 +887,7 @@
                             "transform_weak_wv"
                         ],
                         "configs": {
-                            "strong_warmup": {
+                            "SAW": {
                                 "warmup_transform": "transform_strong_wv_in",
                                 "configs": {
                                     "in": {
