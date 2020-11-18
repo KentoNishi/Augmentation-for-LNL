@@ -544,24 +544,7 @@ Code for "Augmentation Strategies for Learning with Noisy Labels".
 
 ## Training Locally
 
-All training configurations and parameters are controlled via the `presets.json` file. The file follows the following format:
-```javascript
-{
-    "key1": "value1", // global value
-    "key2": "value2", // global value
-    "configs": { // branches of global
-        "preset1": { // extends global scope
-            "key3": "value3", // adds new value
-            "configs": { // branches of preset1
-                "preset1_2": { // extends preset1
-                    "key1": "otherValue" // overrides key1 in global
-                }
-            }
-        }
-    }
-}
-```
-Configurations can contain infinite subconfigurations, and settings specified in subconfigurations always override the parent.
+All training configurations and parameters are controlled via the `presets.json` file. Configurations can contain infinite subconfigurations, and settings specified in subconfigurations always override the parent.
 
 To train locally, first add your local machine to the `presets.json`:
 ```javascript
@@ -594,11 +577,11 @@ To train locally, first add your local machine to the `presets.json`:
 }
 ```
 
-A "preset" is a specific configuration branch. For example, if you would like to train the `global -> c10 -> 90sym -> AugDesc-WS` preset specified in `presets.json` on your machine named `localPC`, you can run the following command:
+A "preset" is a specific configuration branch. For example, if you would like to train the `root -> c10 -> 90sym -> AugDesc-WS` preset specified in `presets.json` on your machine named `localPC`, you can run the following command:
 ```bash
 python train_cifar.py --preset c10.90sym.AugDesc-WS --machine localPC
 ```
-The training script will create the appropriate directory in your specified `checkpoint_path` to save its progress.
+The training script will create the appropriate directory in your specified `checkpoint_path` to save its progress. Additionally, if the `--machine` flag is ommitted, the training script will look for the dataset in the path specified in the `data_path` specified in the nearest parent configuration.
 
 
 ## Source

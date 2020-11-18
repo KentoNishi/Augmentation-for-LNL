@@ -474,6 +474,9 @@
             "warmup_transform": "transform_weak_100",
             "data_path": "../cifar100/data/cifar-100-python",
             "machines": {
+                "localPC": {
+                    "data_path": "/path/to/your/dataset"
+                },
                 "wilson": {
                     "data_path": "/media/scratch/yding/lgfs/lnl/cifar100/data/cifar-100-python"
                 },
@@ -826,6 +829,9 @@
             "lr_switch_epoch": 40,
             "warm_up": 1,
             "machines": {
+                "localPC": {
+                    "data_path": "/path/to/your/dataset"
+                },
                 "wilson": {
                     "data_path": "/home/yding37/Documents/projects/datasets/clothing1m/data"
                 }
@@ -850,62 +856,6 @@
                     "configs": {
                         "SAW": {
                             "warmup_transform": "transform_strong_c1m_c10"
-                        }
-                    }
-                }
-            }
-        },
-        "wv": {
-            "comments": "Unused and untested!",
-            "save_every": 1,
-            "num_workers": 5,
-            "batch_size": 32,
-            "warmup_batch_size": 64,
-            "learning_rate": 0.01,
-            "alpha": 0.5,
-            "lambda_u": 0,
-            "p_threshold": 0.5,
-            "T": 0.5,
-            "num_epochs": 80,
-            "num_class": 50,
-            "machines": {
-                "wilson": {
-                    "data_path": "/home/yding37/Documents/projects/datasets/"
-                },
-                "configs": {
-                    "AugDesc-WS": {
-                        "labeled_transforms": [
-                            "transform_strong_wv_in",
-                            "transform_strong_wv_in",
-                            "transform_weak_wv",
-                            "transform_weak_wv"
-                        ],
-                        "unlabeled_transforms": [
-                            "transform_strong_wv_in",
-                            "transform_strong_wv_in",
-                            "transform_weak_wv",
-                            "transform_weak_wv"
-                        ],
-                        "configs": {
-                            "SAW": {
-                                "warmup_transform": "transform_strong_wv_in",
-                                "configs": {
-                                    "in": {
-                                        "labeled_transforms": [
-                                            "transform_strong_wv_in",
-                                            "transform_strong_wv_in",
-                                            "transform_weak_wv",
-                                            "transform_weak_wv"
-                                        ],
-                                        "unlabeled_transforms": [
-                                            "transform_strong_wv_in",
-                                            "transform_strong_wv_in",
-                                            "transform_weak_wv",
-                                            "transform_weak_wv"
-                                        ]
-                                    }
-                                }
-                            }
                         }
                     }
                 }
