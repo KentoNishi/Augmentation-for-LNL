@@ -549,8 +549,8 @@ All training configurations and parameters are controlled via the `presets.json`
 To train locally, first add your local machine to the `presets.json`:
 ```javascript
 {
-    // inside the global scope
-    "machines": {
+    // ... inside the root scope
+    "machines": { // list of machines
         "localPC": { // name for your local PC, can be anything
             "checkpoint_path": "./localPC_checkpoints"
         }
@@ -563,25 +563,21 @@ To train locally, first add your local machine to the `presets.json`:
                     // path to dataset (python) downloaded from:
                     // https://www.cs.toronto.edu/~kriz/cifar.html
                 }
-                // ...
-                // keep all other machines unchanged
+                // ... keep all other machines unchanged
             }
-            // ...
-            // keep all other config values unchanged
+            // ... keep all other config values unchanged
         }
-        // ...
-        // keep all other configs unchanged
+        // ... keep all other configs unchanged
     }
-    // ...
-    // keep all other global values unchanged
+    // ... keep all other global values unchanged
 }
 ```
 
-A "preset" is a specific configuration branch. For example, if you would like to train the `root -> c10 -> 90sym -> AugDesc-WS` preset specified in `presets.json` on your machine named `localPC`, you can run the following command:
+A "preset" is a specific configuration branch. For example, if you would like to run `train_cifar.py` with the preset  `root -> c10 -> 90sym -> AugDesc-WS` on your machine named `localPC`, you can run the following command:
 ```bash
 python train_cifar.py --preset c10.90sym.AugDesc-WS --machine localPC
 ```
-The training script will create the appropriate directory in your specified `checkpoint_path` to save its progress. Additionally, if the `--machine` flag is ommitted, the training script will look for the dataset in the path specified in the `data_path` specified in the nearest parent configuration.
+The script will begin training the preset specified by the `--preset` argument. Progress will be saved in the appropriate directory in your specified `checkpoint_path`. Additionally, if the `--machine` flag is ommitted, the training script will look for the dataset in the `data_path` inherited from parent configurations.
 
 
 ## Source
