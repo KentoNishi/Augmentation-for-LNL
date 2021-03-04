@@ -1,6 +1,19 @@
 # Augmentation-for-LNL
 
-Code for "Augmentation Strategies for Learning with Noisy Labels".
+Code for ***Augmentation Strategies for Learning with Noisy Labels*** (CVPR 2021).
+
+**Authors**: Kento Nishi*, Yi Ding*, Alex Rich, Tobias Höllerer [`*`: equal contribution]
+
+<details>
+    <summary>Abstract</summary>
+    Imperfect labels are ubiquitous in real-world datasets. Several recent successful methods for training deep neural networks (DNNs) robust to label noise have used two primary techniques: filtering samples based on loss during a warm-up phase to curate an initial set of cleanly labeled samples, and using the output of a network as a pseudo-label for subsequent loss calculations. In this paper, we evaluate different augmentation strategies for algorithms tackling the "learning with noisy labels" problem. We propose and examine multiple augmentation strategies and evaluate them using synthetic datasets based on CIFAR-10 and CIFAR-100, as well as on the real-world dataset Clothing1M. Due to several commonalities in these algorithms, we find that using one set of augmentations for loss modeling tasks and another set for learning is the most effective, improving results on the state-of-the-art and other previous methods. Furthermore, we find that applying augmentation during the warm-up period can negatively impact the loss convergence behavior of correctly versus incorrectly labeled samples. We introduce this augmentation strategy to the state-of-the-art technique and demonstrate that we can improve performance across all evaluated noise levels. In particular, we improve accuracy on the CIFAR-10 benchmark at 90% symmetric noise by more than 15% in absolute accuracy and we also improve performance on the real-world dataset Clothing1M.
+</details>
+
+<p align="center">
+    <img src="./banner.png" alt="Banner" />
+</p>
+
+[View on arXiv](https://arxiv.org/abs/2002.07394) / [View PDF](https://arxiv.org/pdf/2103.02130.pdf) / [Download Paper Source](https://arxiv.org/e-print/2103.02130) / [Download Source Code](https://github.com/KentoNishi/Augmentation-for-LNL/archive/master.zip)
 
 ## Benchmarks
 <details>
@@ -580,5 +593,25 @@ python train_cifar.py --preset c10.90sym.AugDesc-WS --machine localPC
 The script will begin training the preset specified by the `--preset` argument. Progress will be saved in the appropriate directory in your specified `checkpoint_path`. Additionally, if the `--machine` flag is ommitted, the training script will look for the dataset in the `data_path` inherited from parent configurations.
 
 
-## Source
+## Citations
+Please cite the following (temporary arXiv citation):
+```
+@ARTICLE{2021arXiv210302130N,
+       author = {{Nishi}, Kento and {Ding}, Yi and {Rich}, Alex and {H{\"o}llerer}, Tobias},
+        title = "{Augmentation Strategies for Learning with Noisy Labels}",
+      journal = {arXiv e-prints},
+     keywords = {Computer Science - Computer Vision and Pattern Recognition},
+         year = 2021,
+        month = mar,
+          eid = {arXiv:2103.02130},
+        pages = {arXiv:2103.02130},
+archivePrefix = {arXiv},
+       eprint = {2103.02130},
+ primaryClass = {cs.CV},
+       adsurl = {https://ui.adsabs.harvard.edu/abs/2021arXiv210302130N},
+      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+```
+
+## Additional Info
 This repository is a fork of [the official DivideMix implementation](https://github.com/LiJunnan1992/DivideMix).
