@@ -159,7 +159,6 @@ class cifar_dataset(Dataset):
             train_data = train_data.transpose((0, 2, 3, 1))
 
             self.train_label = train_label
-            
 
             if os.path.exists(noise_file):
                 noise_label = json.load(open(noise_file, "r"))
@@ -196,7 +195,10 @@ class cifar_dataset(Dataset):
                     )
                 )
                 noise_label = np.concatenate(
-                    (noise_label, np.array(all_augmented["labels"]),)
+                    (
+                        noise_label,
+                        np.array(all_augmented["labels"]),
+                    )
                 )
 
             if self.mode == "all":

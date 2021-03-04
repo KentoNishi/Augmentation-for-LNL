@@ -40,7 +40,14 @@ if __name__ == "__main__":
         num_iter = (len(labeled_trainloader.dataset) // args.batch_size) + 1
         for (
             batch_idx,
-            (inputs_x, inputs_x2, inputs_x3, inputs_x4, labels_x, w_x,),
+            (
+                inputs_x,
+                inputs_x2,
+                inputs_x3,
+                inputs_x4,
+                labels_x,
+                w_x,
+            ),
         ) in enumerate(labeled_trainloader):
             try:
                 inputs_u, inputs_u2, inputs_u3, inputs_u4 = unlabeled_train_iter.next()
@@ -216,19 +223,16 @@ if __name__ == "__main__":
         precision = precision_score(all_targets, all_predicted, average="weighted")
         recall = recall_score(all_targets, all_predicted, average="weighted")
         f1 = f1_score(all_targets, all_predicted, average="weighted")
-        results = (
-            "Test Epoch: %d, Accuracy: %.3f, Precision: %.3f, Recall: %.3f, F1: %.3f, L_1: %d, U_1: %d, L_2: %d, U_2: %d"
-            % (
-                epoch,
-                accuracy * 100,
-                precision * 100,
-                recall * 100,
-                f1 * 100,
-                size_l1,
-                size_u1,
-                size_l2,
-                size_u2,
-            )
+        results = "Test Epoch: %d, Accuracy: %.3f, Precision: %.3f, Recall: %.3f, F1: %.3f, L_1: %d, U_1: %d, L_2: %d, U_2: %d" % (
+            epoch,
+            accuracy * 100,
+            precision * 100,
+            recall * 100,
+            f1 * 100,
+            size_l1,
+            size_u1,
+            size_l2,
+            size_u2,
         )
         print("\n" + results + "\n")
         logs.write(results + "\n")

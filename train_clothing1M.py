@@ -39,7 +39,14 @@ if __name__ == "__main__":
         num_iter = (len(labeled_trainloader.dataset) // args.batch_size) + 1
         for (
             batch_idx,
-            (inputs_x, inputs_x2, inputs_x3, inputs_x4, labels_x, w_x,),
+            (
+                inputs_x,
+                inputs_x2,
+                inputs_x3,
+                inputs_x4,
+                labels_x,
+                w_x,
+            ),
         ) in enumerate(labeled_trainloader):
             try:
                 inputs_u, inputs_u2, inputs_u3, inputs_u4 = unlabeled_train_iter.next()
@@ -219,7 +226,12 @@ if __name__ == "__main__":
         f1 = f1_score(all_targets, all_predicted, average="weighted")
         results = (
             "Final Metrics, Accuracy: %.3f, Precision: %.3f, Recall: %.3f, F1: %.3f"
-            % (accuracy * 100, precision * 100, recall * 100, f1 * 100,)
+            % (
+                accuracy * 100,
+                precision * 100,
+                recall * 100,
+                f1 * 100,
+            )
         )
         print("\n" + results + "\n")
         logs.write(results + "\n")
@@ -375,23 +387,20 @@ if __name__ == "__main__":
         val_loader = loader.run("val")  # validation
         acc1, prec1, rec1, f1_1 = val(net1, val_loader, 1)
         acc2, prec2, rec2, f1_2 = val(net2, val_loader, 2)
-        results = (
-            "Test Epoch: %d, Accuracy: %.3f & %.3f, Precision: %.3f & %.3f, Recall: %.3f & %.3f, F1: %.3f & %.3f, L_1: %d, U_1: %d, L_2: %d, U_2: %d"
-            % (
-                epoch,
-                acc1 * 100,
-                acc2 * 100,
-                prec1 * 100,
-                prec2 * 100,
-                rec1 * 100,
-                rec2 * 100,
-                f1_1 * 100,
-                f1_2 * 100,
-                size_l1,
-                size_u1,
-                size_l2,
-                size_u2,
-            )
+        results = "Test Epoch: %d, Accuracy: %.3f & %.3f, Precision: %.3f & %.3f, Recall: %.3f & %.3f, F1: %.3f & %.3f, L_1: %d, U_1: %d, L_2: %d, U_2: %d" % (
+            epoch,
+            acc1 * 100,
+            acc2 * 100,
+            prec1 * 100,
+            prec2 * 100,
+            rec1 * 100,
+            rec2 * 100,
+            f1_1 * 100,
+            f1_2 * 100,
+            size_l1,
+            size_u1,
+            size_l2,
+            size_u2,
         )
         print("\n" + results + "\n")
         logs.write(results + "\n")

@@ -4,17 +4,17 @@ import random
 
 
 class ImageNetPolicy(object):
-    """ Randomly choose one of the best 24 Sub-policies on ImageNet.
+    """Randomly choose one of the best 24 Sub-policies on ImageNet.
 
-        Example:
-        >>> policy = ImageNetPolicy()
-        >>> transformed = policy(image)
+    Example:
+    >>> policy = ImageNetPolicy()
+    >>> transformed = policy(image)
 
-        Example as a PyTorch Transform:
-        >>> transform=transforms.Compose([
-        >>>     transforms.Resize(256),
-        >>>     ImageNetPolicy(),
-        >>>     transforms.ToTensor()])
+    Example as a PyTorch Transform:
+    >>> transform=transforms.Compose([
+    >>>     transforms.Resize(256),
+    >>>     ImageNetPolicy(),
+    >>>     transforms.ToTensor()])
     """
 
     def __init__(self, fillcolor=(128, 128, 128)):
@@ -55,17 +55,17 @@ class ImageNetPolicy(object):
 
 
 class CIFAR10Policy(object):
-    """ Randomly choose one of the best 25 Sub-policies on CIFAR10.
+    """Randomly choose one of the best 25 Sub-policies on CIFAR10.
 
-        Example:
-        >>> policy = CIFAR10Policy()
-        >>> transformed = policy(image)
+    Example:
+    >>> policy = CIFAR10Policy()
+    >>> transformed = policy(image)
 
-        Example as a PyTorch Transform:
-        >>> transform=transforms.Compose([
-        >>>     transforms.Resize(256),
-        >>>     CIFAR10Policy(),
-        >>>     transforms.ToTensor()])
+    Example as a PyTorch Transform:
+    >>> transform=transforms.Compose([
+    >>>     transforms.Resize(256),
+    >>>     CIFAR10Policy(),
+    >>>     transforms.ToTensor()])
     """
 
     def __init__(self, fillcolor=(128, 128, 128)):
@@ -106,17 +106,17 @@ class CIFAR10Policy(object):
 
 
 class SVHNPolicy(object):
-    """ Randomly choose one of the best 25 Sub-policies on SVHN.
+    """Randomly choose one of the best 25 Sub-policies on SVHN.
 
-        Example:
-        >>> policy = SVHNPolicy()
-        >>> transformed = policy(image)
+    Example:
+    >>> policy = SVHNPolicy()
+    >>> transformed = policy(image)
 
-        Example as a PyTorch Transform:
-        >>> transform=transforms.Compose([
-        >>>     transforms.Resize(256),
-        >>>     SVHNPolicy(),
-        >>>     transforms.ToTensor()])
+    Example as a PyTorch Transform:
+    >>> transform=transforms.Compose([
+    >>>     transforms.Resize(256),
+    >>>     SVHNPolicy(),
+    >>>     transforms.ToTensor()])
     """
 
     def __init__(self, fillcolor=(128, 128, 128)):
