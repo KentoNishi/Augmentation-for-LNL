@@ -1,5 +1,7 @@
 # Augmentation-for-LNL
 
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/augmentation-strategies-for-learning-with/image-classification-on-clothing1m)](https://paperswithcode.com/sota/image-classification-on-clothing1m?p=augmentation-strategies-for-learning-with)
+
 Code for ***Augmentation Strategies for Learning with Noisy Labels*** (CVPR 2021).
 
 **Authors**: Kento Nishi*, Yi Ding*, Alex Rich, Tobias Höllerer [`*`: equal contribution]
