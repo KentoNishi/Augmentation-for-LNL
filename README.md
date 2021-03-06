@@ -559,6 +559,15 @@ Code for ***Augmentation Strategies for Learning with Noisy Labels*** (CVPR 2021
 
 ## Training Locally
 
+> The source code is heavily reliant on CUDA. Please make sure that you have the newest version of Pytorch and a compatible version of CUDA installed. Using older versions may exhibit inconsistent performance.
+>
+> [Download Pytorch](https://pytorch.org/get-started/locally/)
+> /
+> [Download CUDA](https://developer.nvidia.com/cuda-downloads)
+>
+> Other requirements are included in `requirements.txt`.
+
+
 All training configurations and parameters are controlled via the `presets.json` file. Configurations can contain infinite subconfigurations, and settings specified in subconfigurations always override the parent.
 
 To train locally, first add your local machine to the `presets.json`:
