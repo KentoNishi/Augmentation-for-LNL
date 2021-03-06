@@ -1,4 +1,3 @@
 Pillow
-torch
 numpy
 scikit-learn
