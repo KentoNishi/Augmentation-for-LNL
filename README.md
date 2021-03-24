@@ -568,6 +568,12 @@ Code for ***Augmentation Strategies for Learning with Noisy Labels*** (CVPR 2021
 > Other requirements are included in `requirements.txt`.
 
 
+> **Reproducibility**
+> 
+> At particularly high noise ratios (ex. 90% on CIFAR-10), results may vary significantly.
+> We are aware of this issue, and are exploring ways to yield more consistent results.
+> We will publish any findings (consistently performant configurations, improved procedures, etc.) both in this repository and in continutations of this work.
+
 All training configurations and parameters are controlled via the `presets.json` file. Configurations can contain infinite subconfigurations, and settings specified in subconfigurations always override the parent.
 
 To train locally, first add your local machine to the `presets.json`:
@@ -597,9 +603,9 @@ To train locally, first add your local machine to the `presets.json`:
 }
 ```
 
-A "preset" is a specific configuration branch. For example, if you would like to run `train_cifar.py` with the preset  `root -> c10 -> 90sym -> AugDesc-WS` on your machine named `localPC`, you can run the following command:
+A "preset" is a specific configuration branch. For example, if you would like to run `train_cifar.py` with the preset  `root -> c100 -> 90sym -> AugDesc-WS` on your machine named `localPC`, you can run the following command:
 ```bash
-python train_cifar.py --preset c10.90sym.AugDesc-WS --machine localPC
+python train_cifar.py --preset c100.90sym.AugDesc-WS --machine localPC
 ```
 The script will begin training the preset specified by the `--preset` argument. Progress will be saved in the appropriate directory in your specified `checkpoint_path`. Additionally, if the `--machine` flag is ommitted, the training script will look for the dataset in the `data_path` inherited from parent configurations.
 
