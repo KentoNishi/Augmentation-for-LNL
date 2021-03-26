@@ -238,6 +238,7 @@
                 },
                 "90sym": {
                     "r": 0.9,
+                    "seed": 123456789,
                     "p_threshold": 0.6,
                     "lambda_u": 50,
                     "average_loss": 5,
