@@ -181,7 +181,7 @@ Code for ***Augmentation Strategies for Learning with Noisy Labels*** (CVPR 2021
                     <td><code></code></td>
                 </tr>
                 <tr>
-                    <td rowspan="2">AugDesc-WS.RandAug</td>
+                    <td rowspan="2">AugDesc-WS.RandAug.n1m6</td>
                     <td>Highest</td>
                     <td>96.280%</td>
                     <td><code></code></td>
@@ -357,7 +357,7 @@ Code for ***Augmentation Strategies for Learning with Noisy Labels*** (CVPR 2021
                     <td>38.553%</td>
                 </tr>
                 <tr>
-                    <td rowspan="2">AugDesc-WS.RandAug</td>
+                    <td rowspan="2">AugDesc-WS.RandAug.n1m6</td>
                     <td>Highest</td>
                     <td>78.060%</td>
                     <td><code></code></td>
@@ -608,7 +608,6 @@ A "preset" is a specific configuration branch. For example, if you would like to
 python train_cifar.py --preset c100.90sym.AugDesc-WS --machine localPC
 ```
 The script will begin training the preset specified by the `--preset` argument. Progress will be saved in the appropriate directory in your specified `checkpoint_path`. Additionally, if the `--machine` flag is ommitted, the training script will look for the dataset in the `data_path` inherited from parent configurations.
-
 
 ## Citations
 Please cite the following (temporary arXiv citation):
