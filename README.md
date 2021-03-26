@@ -570,7 +570,7 @@ Code for ***Augmentation Strategies for Learning with Noisy Labels*** (CVPR 2021
 
 > **Reproducibility**
 > 
-> At particularly high noise ratios (ex. 90% on CIFAR-10), results may vary significantly.
+> At particularly high noise ratios (ex. 90% on CIFAR-10), results may vary across training runs.
 > We are aware of this issue, and are exploring ways to yield more consistent results.
 > We will publish any findings (consistently performant configurations, improved procedures, etc.) both in this repository and in continutations of this work.
 
