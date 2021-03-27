@@ -215,7 +215,7 @@ Code for ***Augmentation Strategies for Learning with Noisy Labels*** (CVPR 2021
                     <td>94.078%</td>
                 </tr>
                 <tr>
-                    <td rowspan="2"><strong>AugDesc-WS</strong> (WAW)</td>
+                    <td rowspan="2">AugDesc-WS (WAW)</td>
                     <td>Highest</td>
                     <td>96.330%</td>
                     <td>95.360%</td>
@@ -387,7 +387,7 @@ Code for ***Augmentation Strategies for Learning with Noisy Labels*** (CVPR 2021
                     <td>15.050%</td>
                 </tr>
                 <tr>
-                    <td rowspan="2"><strong>AugDesc-WS</strong> (WAW)</td>
+                    <td rowspan="2">AugDesc-WS (WAW)</td>
                     <td>Highest</td>
                     <td>79.500%</td>
                     <td>77.240%</td>
@@ -417,7 +417,7 @@ Code for ***Augmentation Strategies for Learning with Noisy Labels*** (CVPR 2021
                     <td><code>74.760%</code></td>
                 </tr>
                 <tr>
-                    <td><strong>AugDesc-WS</strong> (WAW)</td>
+                    <td>AugDesc-WS (WAW)</td>
                     <td><code>74.720%</code></td>
                 </tr>
                 <tr>
@@ -608,6 +608,19 @@ A "preset" is a specific configuration branch. For example, if you would like to
 python train_cifar.py --preset c100.90sym.AugDesc-WS --machine localPC
 ```
 The script will begin training the preset specified by the `--preset` argument. Progress will be saved in the appropriate directory in your specified `checkpoint_path`. Additionally, if the `--machine` flag is ommitted, the training script will look for the dataset in the `data_path` inherited from parent configurations.
+
+Here are some abbreviations used in our `presets.json`:
+| Abbreviation | Meaning                   |
+| :----------- | :------------------------ |
+| `c10`        | CIFAR-10                  |
+| `c100`       | CIFAR-100                 |
+| `c1m`        | Clothing1M                |
+| `sym`        | Symmetric Noise           |
+| `asym`       | Asymmetric Noise          |
+| `SAW`        | Strongly Augmented Warmup |
+| `WAW`        | Weakly Augmented Warmup   |
+| `RandAug`    | RandAugment               |
+
 
 ## Citations
 Please cite the following (temporary arXiv citation):
