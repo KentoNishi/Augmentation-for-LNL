@@ -4,7 +4,7 @@
 
 Code for ***Augmentation Strategies for Learning with Noisy Labels*** (CVPR 2021).
 
-**Authors**: Kento Nishi*, Yi Ding*, Alex Rich, Tobias Höllerer [`*`: equal contribution]
+**[Authors](mailto:kento24gs@outlook.com,yding@cs.ucsb.edu,anrich@cs.ucsb.edu,holl@cs.ucsb.edu)**: [Kento Nishi](mailto:kento24gs@outlook.com)\*, [Yi Ding](mailto:yding@cs.ucsb.edu)\*, [Alex Rich](mailto:anrich@cs.ucsb.edu), [Tobias Höllerer](mailto:holl@cs.ucsb.edu) [`*`: [equal contribution](mailto:kento24gs@outlook.com,yding@cs.ucsb.edu)]
 
 <details>
     <summary>Abstract</summary>
