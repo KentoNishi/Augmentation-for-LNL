@@ -23,6 +23,7 @@
             "dataset": "cifar10",
             "num_class": 10,
             "warm_up": 10,
+            "seed": 123456789,
             "data_path": "../cifar10/data/cifar-10-batches-py",
             "machines": {
                 "localPC": {
@@ -238,7 +239,6 @@
                 },
                 "90sym": {
                     "r": 0.9,
-                    "seed": 123456789,
                     "p_threshold": 0.6,
                     "lambda_u": 50,
                     "average_loss": 5,
