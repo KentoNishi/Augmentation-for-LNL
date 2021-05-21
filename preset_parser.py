@@ -52,6 +52,19 @@ def parse_args(file):
     saved_folder = os.path.join(args.checkpoint_path, "saved")
     if not os.path.exists(saved_folder):
         os.mkdir(saved_folder)
+
+    #############################################
+    # BEGIN: SAVE LOSSES FOR TRAINING LOSS PLOT #
+    #############################################
+
+    loss_folder = os.path.join(args.checkpoint_path, "loss")
+    if not os.path.exists(loss_folder):
+        os.mkdir(loss_folder)
+
+    #############################################
+    #  END: SAVE LOSSES FOR TRAINING LOSS PLOT  #
+    #############################################
+
     if not os.path.exists(args.pretrained_path + f"/saved/{args.preset}.pth.tar"):
         # if os.path.exists(args.pretrained_path + f"/saved/metrics.log"):
         #     raise AssertionError("Training log already exists!")
