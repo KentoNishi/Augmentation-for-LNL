@@ -57,9 +57,10 @@ def parse_args(file):
     # BEGIN: SAVE LOSSES FOR TRAINING LOSS PLOT #
     #############################################
 
-    loss_folder = os.path.join(args.checkpoint_path, "loss")
-    if not os.path.exists(loss_folder):
-        os.mkdir(loss_folder)
+    if args.save_losses:
+        loss_folder = os.path.join(args.checkpoint_path, "loss")
+        if not os.path.exists(loss_folder):
+            os.mkdir(loss_folder)
 
     #############################################
     #  END: SAVE LOSSES FOR TRAINING LOSS PLOT  #
