@@ -184,6 +184,20 @@ class cifar_dataset(Dataset):
                 print(f"saving noisy labels to {noise_file}...")
                 json.dump(noise_label, open(noise_file, "w"), indent=4, sort_keys=True)
 
+            #############################################
+            # BEGIN: SAVE LOSSES FOR TRAINING LOSS PLOT #
+            #############################################
+
+            clean_path = "/".join(noise_file.split("/")[:-1])
+            np.save(
+                f"{clean_path}/is_noisy.npy",
+                np.array([train_label[i] != noise_label[i] for i in range(50000)]),
+            )
+
+            #############################################
+            #  END: SAVE LOSSES FOR TRAINING LOSS PLOT  #
+            #############################################
+
             if self.preaug_file != "":
                 all_augmented = torch.load(self.preaug_file)
                 train_data = np.concatenate(
@@ -195,10 +209,7 @@ class cifar_dataset(Dataset):
                     )
                 )
                 noise_label = np.concatenate(
-                    (
-                        noise_label,
-                        np.array(all_augmented["labels"]),
-                    )
+                    (noise_label, np.array(all_augmented["labels"]),)
                 )
 
             if self.mode == "all":
