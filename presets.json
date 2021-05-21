@@ -34,6 +34,9 @@
                 },
                 "yi": {
                     "data_path": "/media/work/lgfs/lnl/cifar10/data/cifar-10-batches-py"
+                },
+                "extras": {
+                    "data_path": "C:/Users/yoshi/GitHub/cifar10/data/cifar-10-batches-py"
                 }
             },
             "warmup_transform": "transform_weak_10",
