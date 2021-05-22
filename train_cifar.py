@@ -235,7 +235,7 @@ if __name__ == "__main__":
         logs.flush()
         return accuracy
 
-    def eval_train(model, all_loss):
+    def eval_train(model, all_loss, only_loss=False):
         model.eval()
         losses = torch.zeros(len(eval_loader.dataset))
         with torch.no_grad():
@@ -248,20 +248,24 @@ if __name__ == "__main__":
         losses = (losses - losses.min()) / (losses.max() - losses.min())
         all_loss.append(losses)
 
-        if (
-            args.average_loss > 0
-        ):  # average loss over last 5 epochs to improve convergence stability
-            history = torch.stack(all_loss)
-            input_loss = history[-args.average_loss :].mean(0)
-            input_loss = input_loss.reshape(-1, 1)
-        else:
-            input_loss = losses.reshape(-1, 1)
+        prob = None
 
-        # fit a two-component GMM to the loss
-        gmm = GaussianMixture(n_components=2, max_iter=10, tol=1e-2, reg_covar=5e-4)
-        gmm.fit(input_loss)
-        prob = gmm.predict_proba(input_loss)
-        prob = prob[:, gmm.means_.argmin()]
+        if not only_loss:
+            if (
+                args.average_loss > 0
+            ):  # average loss over last 5 epochs to improve convergence stability
+                history = torch.stack(all_loss)
+                input_loss = history[-args.average_loss :].mean(0)
+                input_loss = input_loss.reshape(-1, 1)
+            else:
+                input_loss = losses.reshape(-1, 1)
+
+            # fit a two-component GMM to the loss
+            gmm = GaussianMixture(n_components=2, max_iter=10, tol=1e-2, reg_covar=5e-4)
+            gmm.fit(input_loss)
+            prob = gmm.predict_proba(input_loss)
+            prob = prob[:, gmm.means_.argmin()]
+
         return prob, all_loss
 
     def linear_rampup(current, warm_up, rampup_length=16):
@@ -426,6 +430,25 @@ if __name__ == "__main__":
             )  # train net2
 
         acc = test(epoch, net1, net2, size_l1, size_u1, size_l2, size_u2)
+
+        #############################################
+        # BEGIN: SAVE LOSSES FOR TRAINING LOSS PLOT #
+        #############################################
+
+        if args.save_losses:
+            with torch.no_grad():
+                _, overall_epoch_loss = eval_train(logger_model, [], only_loss=True)
+                saved_losses = os.path.join(
+                    args.checkpoint_path,
+                    "loss",
+                    f"loss_{args.preset}_epoch{epoch}.pth.tar",
+                )
+                torch.save(overall_epoch_loss[0], saved_losses)
+
+        #############################################
+        #  END: SAVE LOSSES FOR TRAINING LOSS PLOT  #
+        #############################################
+
         data_dict = {
             "epoch": epoch,
             "net1": net1.state_dict(),
@@ -443,21 +466,5 @@ if __name__ == "__main__":
             args.checkpoint_path, "saved", f"{args.preset}.pth.tar"
         )
         torch.save(data_dict, saved_model)
-
-        #############################################
-        # BEGIN: SAVE LOSSES FOR TRAINING LOSS PLOT #
-        #############################################
-
-        if args.save_losses:
-
-            _, overall_epoch_loss = eval_train(logger_model, [])
-            saved_losses = os.path.join(
-                args.checkpoint_path, "loss", f"loss_{args.preset}_epoch{epoch}.pth.tar"
-            )
-            torch.save(overall_epoch_loss[0], saved_losses)
-
-        #############################################
-        #  END: SAVE LOSSES FOR TRAINING LOSS PLOT  #
-        #############################################
 
         epoch += 1
