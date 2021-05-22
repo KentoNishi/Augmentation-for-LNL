@@ -37,7 +37,7 @@
                     "data_path": "/media/work/lgfs/lnl/cifar10/data/cifar-10-batches-py"
                 },
                 "extras": {
-                    "data_path": "C:/Users/yoshi/GitHub/cifar10/data/cifar-10-batches-py",
+                    "data_path": "../../cifar10/data/cifar-10-batches-py",
                     "save_losses": true
                 }
             },

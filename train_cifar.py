@@ -346,6 +346,22 @@ if __name__ == "__main__":
     test_loader = loader.run("test")
     eval_loader = loader.run("eval_train")
 
+    if args.save_losses:
+
+        class LossLoggerModel:
+            def __init__(self, net1, net2):
+                self.net1 = net1
+                self.net2 = net2
+
+            def eval(self):
+                self.net1.eval()
+                self.net2.eval()
+
+            def __call__(self, *args):
+                return (self.net1(*args) + self.net2(*args)) / 2
+
+        logger_model = LossLoggerModel(net1, net2)
+
     while epoch < args.num_epochs:
         lr = args.learning_rate
         if epoch >= args.lr_switch_epoch:
@@ -434,23 +450,11 @@ if __name__ == "__main__":
 
         if args.save_losses:
 
-            class LossLoggerModel:
-                def __init__(self, net1, net2):
-                    self.net1 = net1
-                    self.net2 = net2
-
-                def eval(self):
-                    self.net1.eval()
-                    self.net2.eval()
-
-                def __call__(self, *args):
-                    return (self.net1(*args) + self.net2(*args)) / 2
-
-            _, overall_epoch_loss = eval_train(LossLoggerModel(net1, net2), [])
+            _, overall_epoch_loss = eval_train(logger_model, [])
             saved_losses = os.path.join(
                 args.checkpoint_path, "loss", f"loss_{args.preset}_epoch{epoch}.pth.tar"
             )
-            torch.save(overall_epoch_loss, saved_losses)
+            torch.save(overall_epoch_loss[0], saved_losses)
 
         #############################################
         #  END: SAVE LOSSES FOR TRAINING LOSS PLOT  #
