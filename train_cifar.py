@@ -235,7 +235,20 @@ if __name__ == "__main__":
         logs.flush()
         return accuracy
 
-    def eval_train(model, all_loss, only_loss=False):
+    def calc_loss(model):
+        model.eval()
+        losses = torch.zeros(len(loss_save_loader.dataset))
+        with torch.no_grad():
+            for batch_idx, (inputs, targets, index) in enumerate(loss_save_loader):
+                inputs, targets = inputs.cuda(), targets.cuda()
+                outputs = model(inputs)
+                loss = CE(outputs, targets)
+                for b in range(inputs.size(0)):
+                    losses[index[b]] = loss[b]
+        losses = (losses - losses.min()) / (losses.max() - losses.min())
+        return losses
+
+    def eval_train(model, all_loss):
         model.eval()
         losses = torch.zeros(len(eval_loader.dataset))
         with torch.no_grad():
@@ -247,24 +260,20 @@ if __name__ == "__main__":
                     losses[index[b]] = loss[b]
         losses = (losses - losses.min()) / (losses.max() - losses.min())
         all_loss.append(losses)
+        if (
+            args.average_loss > 0
+        ):  # average loss over last 5 epochs to improve convergence stability
+            history = torch.stack(all_loss)
+            input_loss = history[-args.average_loss :].mean(0)
+            input_loss = input_loss.reshape(-1, 1)
+        else:
+            input_loss = losses.reshape(-1, 1)
 
-        prob = None
-
-        if not only_loss:
-            if (
-                args.average_loss > 0
-            ):  # average loss over last 5 epochs to improve convergence stability
-                history = torch.stack(all_loss)
-                input_loss = history[-args.average_loss :].mean(0)
-                input_loss = input_loss.reshape(-1, 1)
-            else:
-                input_loss = losses.reshape(-1, 1)
-
-            # fit a two-component GMM to the loss
-            gmm = GaussianMixture(n_components=2, max_iter=10, tol=1e-2, reg_covar=5e-4)
-            gmm.fit(input_loss)
-            prob = gmm.predict_proba(input_loss)
-            prob = prob[:, gmm.means_.argmin()]
+        # fit a two-component GMM to the loss
+        gmm = GaussianMixture(n_components=2, max_iter=10, tol=1e-2, reg_covar=5e-4)
+        gmm.fit(input_loss)
+        prob = gmm.predict_proba(input_loss)
+        prob = prob[:, gmm.means_.argmin()]
 
         return prob, all_loss
 
@@ -349,6 +358,7 @@ if __name__ == "__main__":
     warmup_trainloader = loader.run("warmup")
     test_loader = loader.run("test")
     eval_loader = loader.run("eval_train")
+    loss_save_loader = loader.run("eval_train")
 
     if args.save_losses:
 
@@ -437,7 +447,7 @@ if __name__ == "__main__":
 
         if args.save_losses:
             with torch.no_grad():
-                _, overall_epoch_loss = eval_train(logger_model, [], only_loss=True)
+                overall_epoch_loss = calc_loss(logger_model)
                 saved_losses = os.path.join(
                     args.checkpoint_path,
                     "loss",
