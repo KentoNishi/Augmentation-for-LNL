@@ -438,7 +438,7 @@ if __name__ == "__main__":
                     "loss",
                     f"loss_{args.preset}_epoch{epoch}.pth.tar",
                 )
-                torch.save(overall_epoch_loss[0], saved_losses)
+                torch.save(overall_epoch_loss, saved_losses)
 
         #############################################
         #  END: SAVE LOSSES FOR TRAINING LOSS PLOT  #
