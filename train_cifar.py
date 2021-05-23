@@ -235,13 +235,14 @@ if __name__ == "__main__":
         logs.flush()
         return accuracy
 
-    def calc_loss(model):
-        model.eval()
+    def calc_loss(net1, net2):
+        net1.eval()
+        net2.eval()
         losses = torch.zeros(len(loss_save_loader.dataset))
         with torch.no_grad():
             for batch_idx, (inputs, targets, index) in enumerate(loss_save_loader):
                 inputs, targets = inputs.cuda(), targets.cuda()
-                outputs = model(inputs)
+                outputs = (net1(inputs) + net2(inputs)) / 2
                 loss = CE(outputs, targets)
                 for b in range(inputs.size(0)):
                     losses[index[b]] = loss[b]
@@ -360,22 +361,6 @@ if __name__ == "__main__":
     eval_loader = loader.run("eval_train")
     loss_save_loader = loader.run("eval_train")
 
-    if args.save_losses:
-
-        class LossLoggerModel:
-            def __init__(self, net1, net2):
-                self.net1 = net1
-                self.net2 = net2
-
-            def eval(self):
-                self.net1.eval()
-                self.net2.eval()
-
-            def __call__(self, *args):
-                return (self.net1(*args) + self.net2(*args)) / 2
-
-        logger_model = LossLoggerModel(net1, net2)
-
     while epoch < args.num_epochs:
         lr = args.learning_rate
         if epoch >= args.lr_switch_epoch:
@@ -447,7 +432,7 @@ if __name__ == "__main__":
 
         if args.save_losses:
             with torch.no_grad():
-                overall_epoch_loss = calc_loss(logger_model)
+                overall_epoch_loss = calc_loss(net1, net2)
                 saved_losses = os.path.join(
                     args.checkpoint_path,
                     "loss",
