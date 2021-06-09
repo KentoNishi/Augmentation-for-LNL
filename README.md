@@ -19,6 +19,14 @@ Code for ***Augmentation Strategies for Learning with Noisy Labels*** (CVPR 2021
 
 [View on arXiv](https://arxiv.org/abs/2103.02130) / [View PDF](https://arxiv.org/pdf/2103.02130.pdf) / [Download Paper Source](https://arxiv.org/e-print/2103.02130) / [Download Source Code](https://github.com/KentoNishi/Augmentation-for-LNL/archive/master.zip)
 
+<p align="center">
+    <a href="https://www.youtube.com/watch?v=HVTjVJVM3iI">
+        <img src="./thumbnail.png" alt="Thumbnail" style="max-width: 420px;" />
+        <br />
+        Watch on YouTube
+    </a>
+</p>
+
 ## Benchmarks
 <details>
     <summary>All Benchmarks</summary>
