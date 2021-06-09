@@ -21,7 +21,7 @@ Code for ***Augmentation Strategies for Learning with Noisy Labels*** (CVPR 2021
 
 <p align="center">
     <a href="https://www.youtube.com/watch?v=HVTjVJVM3iI">
-        <img src="./thumbnail.png" alt="Thumbnail" style="max-width: 420px;" />
+        <img src="./thumbnail.png" alt="Thumbnail"/>
         <br />
         Watch on YouTube
     </a>
