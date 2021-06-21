@@ -633,22 +633,15 @@ Here are some abbreviations used in our `presets.json`:
 
 
 ## Citations
-Please cite the following (temporary arXiv citation):
+Please cite the following:
 ```
-@ARTICLE{2021arXiv210302130N,
-       author = {{Nishi}, Kento and {Ding}, Yi and {Rich}, Alex and {H{\"o}llerer}, Tobias},
-        title = "{Augmentation Strategies for Learning with Noisy Labels}",
-      journal = {arXiv e-prints},
-     keywords = {Computer Science - Computer Vision and Pattern Recognition},
-         year = 2021,
-        month = mar,
-          eid = {arXiv:2103.02130},
-        pages = {arXiv:2103.02130},
-archivePrefix = {arXiv},
-       eprint = {2103.02130},
- primaryClass = {cs.CV},
-       adsurl = {https://ui.adsabs.harvard.edu/abs/2021arXiv210302130N},
-      adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+@InProceedings{Nishi_2021_CVPR,
+    author    = {Nishi, Kento and Ding, Yi and Rich, Alex and {H{\"o}llerer, Tobias},
+    title     = {Augmentation Strategies for Learning With Noisy Labels},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+    month     = {June},
+    year      = {2021},
+    pages     = {8022-8031}
 }
 ```
 
