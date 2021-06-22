@@ -645,5 +645,9 @@ Please cite the following:
 }
 ```
 
+## Extras
+
+Extra bits of unsanitized code for plotting, training, etc. can be found in the [Aug-for-LNL-Extras repository](https://github.com/KentoNishi/Aug-for-LNL-Extras).
+
 ## Additional Info
 This repository is a fork of [the official DivideMix implementation](https://github.com/LiJunnan1992/DivideMix).
