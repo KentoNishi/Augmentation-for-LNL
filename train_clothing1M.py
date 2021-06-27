@@ -237,6 +237,20 @@ if __name__ == "__main__":
         logs.write(results + "\n")
         logs.flush()
 
+    def calc_loss(net1, net2):
+        net1.eval()
+        net2.eval()
+        losses = torch.zeros(len(loss_save_loader.dataset))
+        with torch.no_grad():
+            for batch_idx, (inputs, targets, index) in enumerate(loss_save_loader):
+                inputs, targets = inputs.cuda(), targets.cuda()
+                outputs = (net1(inputs) + net2(inputs)) / 2
+                loss = CE(outputs, targets)
+                for b in range(inputs.size(0)):
+                    losses[index[b]] = loss[b]
+        losses = (losses - losses.min()) / (losses.max() - losses.min())
+        return losses
+
     def eval_train(epoch, model):
         model.eval()
         num_samples = args.num_batches * args.batch_size
@@ -314,6 +328,8 @@ if __name__ == "__main__":
     CE = nn.CrossEntropyLoss(reduction="none")
     CEloss = nn.CrossEntropyLoss()
     conf_penalty = NegEntropy()
+    
+    loss_save_loader = loader.run("eval_train")
 
     while epoch < args.num_epochs:
         lr = args.learning_rate
@@ -406,6 +422,25 @@ if __name__ == "__main__":
         logs.write(results + "\n")
         logs.flush()
         if (epoch + 1) % args.save_every == 0 or epoch == args.warm_up - 1:
+
+            #############################################
+            # BEGIN: SAVE LOSSES FOR TRAINING LOSS PLOT #
+            #############################################
+
+            if args.save_losses:
+                with torch.no_grad():
+                    overall_epoch_loss = calc_loss(net1, net2)
+                    saved_losses = os.path.join(
+                        args.checkpoint_path,
+                        "loss",
+                        f"loss_{args.preset}_epoch{epoch}.pth.tar",
+                    )
+                    torch.save(overall_epoch_loss, saved_losses)
+
+            #############################################
+            #  END: SAVE LOSSES FOR TRAINING LOSS PLOT  #
+            #############################################
+
             data_dict = {
                 "epoch": epoch,
                 "net1": net1.state_dict(),
