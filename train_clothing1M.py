@@ -241,13 +241,15 @@ if __name__ == "__main__":
         net1.eval()
         net2.eval()
         losses = torch.zeros(len(loss_save_loader.dataset))
+        n = 0
         with torch.no_grad():
             for batch_idx, (inputs, targets, index) in enumerate(loss_save_loader):
                 inputs, targets = inputs.cuda(), targets.cuda()
                 outputs = (net1(inputs) + net2(inputs)) / 2
                 loss = CE(outputs, targets)
                 for b in range(inputs.size(0)):
-                    losses[index[b]] = loss[b]
+                    losses[n] = loss[b]
+                    n += 1
         losses = (losses - losses.min()) / (losses.max() - losses.min())
         return losses
 
@@ -328,7 +330,7 @@ if __name__ == "__main__":
     CE = nn.CrossEntropyLoss(reduction="none")
     CEloss = nn.CrossEntropyLoss()
     conf_penalty = NegEntropy()
-    
+
     loss_save_loader = loader.run("eval_train")
 
     while epoch < args.num_epochs:
