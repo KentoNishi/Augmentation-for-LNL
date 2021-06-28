@@ -861,7 +861,12 @@
                     ],
                     "configs": {
                         "SAW": {
-                            "warmup_transform": "transform_strong_c1m_c10"
+                            "warmup_transform": "transform_strong_c1m_c10",
+                            "configs": {
+                                "save_losses": {
+                                    "save_losses": true
+                                }
+                            }
                         }
                     }
                 }
