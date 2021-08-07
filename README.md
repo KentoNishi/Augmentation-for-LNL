@@ -424,11 +424,11 @@ Code for ***Augmentation Strategies for Learning with Noisy Labels*** (CVPR 2021
             <tbody>
                 <tr>
                     <td>Runtime-W (Vanilla DivideMix)</td>
-                    <td><code>74.760%</code></td>
+                    <td>74.760%</td>
                 </tr>
                 <tr>
                     <td>AugDesc-WS (WAW)</td>
-                    <td><code>74.720%</code></td>
+                    <td>74.720%</td>
                 </tr>
                 <tr>
                     <td>AugDesc-WS.SAW</td>
