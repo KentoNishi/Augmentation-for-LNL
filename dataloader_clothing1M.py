@@ -282,6 +282,11 @@ class clothing_dataloader:
             eval_dataset = clothing_dataset(
                 self.root,
                 transform=self.transforms["test"],
+                # ^- this is a small mistake in our implementation!
+                # augmentations for eval_train should be weak, not none.
+                # although this has a neglibible effect on performance,
+                # we feel it is important to note for future readers of this code.
+                # see: https://github.com/KentoNishi/Augmentation-for-LNL/issues/4
                 mode="all",
                 num_samples=self.num_batches * self.batch_size,
             )

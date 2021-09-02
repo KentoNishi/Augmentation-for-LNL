@@ -473,6 +473,11 @@ class cifar_dataloader:
                 r=self.r,
                 root_dir=self.root_dir,
                 transform=self.transforms["test"],
+                # ^- this is a small mistake in our implementation!
+                # augmentations for eval_train should be weak, not none.
+                # although this has a neglibible effect on performance,
+                # we feel it is important to note for future readers of this code.
+                # see: https://github.com/KentoNishi/Augmentation-for-LNL/issues/4
                 mode="all",
                 noise_file=self.noise_file,
                 preaug_file=self.preaug_file,
