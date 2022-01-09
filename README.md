@@ -582,7 +582,7 @@ Code for ***Augmentation Strategies for Learning with Noisy Labels*** (CVPR 2021
 > 
 > At particularly high noise ratios (ex. 90% on CIFAR-10), results may vary across training runs.
 > We are aware of this issue, and are exploring ways to yield more consistent results.
-> We will publish any findings (consistently performant configurations, improved procedures, etc.) both in this repository and in continutations of this work.
+> We will publish any findings (consistently performant configurations, improved procedures, etc.) both in this repository and in continuations of this work.
 
 All training configurations and parameters are controlled via the `presets.json` file. Configurations can contain infinite subconfigurations, and settings specified in subconfigurations always override the parent.
 
